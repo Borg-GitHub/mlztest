@@ -3,13 +3,6 @@
   "handler": "Microsoft.Azure.CreateUIDef",
   "version": "1.0.0",
   "parameters": {
-    "azureGatewaySubnetAddressPrefix": {
-      "type": "string",
-      "defaultValue": "10.0.129.192/26",
-      "metadata": {
-        "description": "The CIDR Subnet Address Prefix for the Azure Gateway Subnet. It must be in the Hub Virtual Network space. It must be /26."
-      }
-    },
     "identifier": {
       "type": "string",
       "metadata": {
@@ -54,11 +47,7 @@
     "avdVmSize": {
       "type": "string",
       "defaultValue": "Standard_D4s_v3",
-      "allowedValues": [
-        "Standard_D4s_v3",
-        "Standard_NV12s_v3",
-        "Standard_F8s_v2"
-      ],
+      "allowedValues": ["Standard_D4s_v3", "Standard_NV12s_v3", "Standard_F8s_v2"],
       "metadata": {
         "description": "Size of the session host VMs."
       }
@@ -91,6 +80,19 @@
         "description": "Gallery image to use for session hosts."
       }
     }
+  },
+  "outputs": {
+    "identifier": "[steps('coreSettings').identifier]",
+    "environmentAbbreviation": "[steps('coreSettings').environmentAbbreviation]",
+    "avdHostPoolName": "[steps('avdSettings').avdHostPoolName]",
+    "avdHostPoolFriendlyName": "[steps('avdSettings').avdHostPoolFriendlyName]",
+    "avdHostPoolType": "[steps('avdSettings').avdHostPoolType]",
+    "avdMaxSessionLimit": "[steps('avdSettings').avdMaxSessionLimit]",
+    "avdVmSize": "[steps('avdSettings').avdVmSize]",
+    "avdVmCount": "[steps('avdSettings').avdVmCount]",
+    "avdUserPrincipalNames": "[steps('avdSettings').avdUserPrincipalNames]",
+    "avdImageType": "[steps('avdSettings').avdImageType]",
+    "avdGalleryImage": "[steps('avdSettings').avdGalleryImage]"
   },
   "steps": [
     {
@@ -157,34 +159,34 @@
         {
           "name": "avdVmSize",
           "type": "Microsoft.Common.DropDown",
-          "label": "Session Host VM Size",
-          "toolTip": "Choose the VM size for session hosts.",
+          "label": "AVD VM Size",
+          "toolTip": "Select a VM size for session hosts.",
           "defaultValue": "Standard_D4s_v3",
           "constraints": {
             "allowedValues": [
-              { "label": "D4s v3", "value": "Standard_D4s_v3" },
-              { "label": "NV12s v3 (GPU)", "value": "Standard_NV12s_v3" },
-              { "label": "F8s v2", "value": "Standard_F8s_v2" }
+              { "label": "D4s_v3", "value": "Standard_D4s_v3" },
+              { "label": "NV12s_v3", "value": "Standard_NV12s_v3" },
+              { "label": "F8s_v2", "value": "Standard_F8s_v2" }
             ]
           }
         },
         {
           "name": "avdVmCount",
           "type": "Microsoft.Common.TextBox",
-          "label": "Session Host VM Count",
-          "toolTip": "Number of session host VMs to deploy."
+          "label": "Session Host Count",
+          "toolTip": "Number of VMs to deploy."
         },
         {
           "name": "avdUserPrincipalNames",
           "type": "Microsoft.Common.TextBox",
           "label": "User Principal Names",
-          "toolTip": "Comma-separated list of user principal names to assign to the AVD host pool."
+          "toolTip": "Comma-separated list of UPNs to assign to the host pool."
         },
         {
           "name": "avdImageType",
           "type": "Microsoft.Common.DropDown",
-          "label": "Session Host Image Type",
-          "toolTip": "Select the type of image to use for session hosts.",
+          "label": "Image Type",
+          "toolTip": "Choose between gallery or custom image.",
           "defaultValue": "Gallery",
           "constraints": {
             "allowedValues": [
@@ -196,8 +198,8 @@
         {
           "name": "avdGalleryImage",
           "type": "Microsoft.Common.TextBox",
-          "label": "Gallery Image",
-          "toolTip": "Gallery image to use for session hosts."
+          "label": "Gallery Image URN",
+          "toolTip": "Marketplace URN of the image."
         }
       ]
     }
