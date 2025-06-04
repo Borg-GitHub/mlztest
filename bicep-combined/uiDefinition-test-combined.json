@@ -1,9 +1,8 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/createUiDefinition.json#",
   "handler": "Microsoft.Azure.CreateUIDef",
   "version": "1.0.0",
   "parameters": {
-    // === MLZ Core Parameters (examples, expand as needed) ===
     "azureGatewaySubnetAddressPrefix": {
       "type": "string",
       "defaultValue": "10.0.129.192/26",
@@ -25,9 +24,6 @@
         "description": "[dev/prod/test] The abbreviation for the target environment."
       }
     },
-    // ... (other MLZ parameters here, as in your current file) ...
-
-    // === AVD Add-on Parameters (from azure-virtual-desktop/uiDefinition.json) ===
     "avdHostPoolName": {
       "type": "string",
       "metadata": {
@@ -95,7 +91,6 @@
         "description": "Gallery image to use for session hosts."
       }
     }
-    // ...add any other AVD parameters from your add-on as needed...
   },
   "outputs": {},
   "steps": [
@@ -123,7 +118,6 @@
             ]
           }
         }
-        // ...add more MLZ UI elements as needed...
       ]
     },
     {
@@ -206,9 +200,7 @@
           "label": "Gallery Image",
           "toolTip": "Gallery image to use for session hosts."
         }
-        // ...add more AVD UI elements as needed...
       ]
     }
-    // ...add more steps for Networking, Security, Monitoring, etc. as needed...
   ]
 }
