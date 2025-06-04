@@ -82,17 +82,21 @@
     }
   },
   "outputs": {
-    "identifier": "[steps('coreSettings').identifier]",
-    "environmentAbbreviation": "[steps('coreSettings').environmentAbbreviation]",
-    "avdHostPoolName": "[steps('avdSettings').avdHostPoolName]",
-    "avdHostPoolFriendlyName": "[steps('avdSettings').avdHostPoolFriendlyName]",
-    "avdHostPoolType": "[steps('avdSettings').avdHostPoolType]",
-    "avdMaxSessionLimit": "[steps('avdSettings').avdMaxSessionLimit]",
-    "avdVmSize": "[steps('avdSettings').avdVmSize]",
-    "avdVmCount": "[steps('avdSettings').avdVmCount]",
-    "avdUserPrincipalNames": "[steps('avdSettings').avdUserPrincipalNames]",
-    "avdImageType": "[steps('avdSettings').avdImageType]",
-    "avdGalleryImage": "[steps('avdSettings').avdGalleryImage]"
+    "parameters": {
+      "value": {
+        "identifier": "[steps('coreSettings').identifier]",
+        "environmentAbbreviation": "[steps('coreSettings').environmentAbbreviation]",
+        "avdHostPoolName": "[steps('avdSettings').avdHostPoolName]",
+        "avdHostPoolFriendlyName": "[steps('avdSettings').avdHostPoolFriendlyName]",
+        "avdHostPoolType": "[steps('avdSettings').avdHostPoolType]",
+        "avdMaxSessionLimit": "[steps('avdSettings').avdMaxSessionLimit]",
+        "avdVmSize": "[steps('avdSettings').avdVmSize]",
+        "avdVmCount": "[steps('avdSettings').avdVmCount]",
+        "avdUserPrincipalNames": "[steps('avdSettings').avdUserPrincipalNames]",
+        "avdImageType": "[steps('avdSettings').avdImageType]",
+        "avdGalleryImage": "[steps('avdSettings').avdGalleryImage]"
+      }
+    }
   },
   "steps": [
     {
