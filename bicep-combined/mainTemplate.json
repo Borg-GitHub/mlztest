@@ -1,19 +1,18 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "identifier": { "type": "string" },
-    "environmentAbbreviation": { "type": "string" },
-    "avdHostPoolName": { "type": "string" },
-    "avdHostPoolFriendlyName": { "type": "string" },
-    "avdHostPoolType": { "type": "string" },
-    "avdMaxSessionLimit": { "type": "int" },
-    "avdVmSize": { "type": "string" },
-    "avdVmCount": { "type": "int" },
-    "avdUserPrincipalNames": { "type": "array" },
-    "avdImageType": { "type": "string" },
-    "avdGalleryImage": { "type": "string" }
-  },
-  "resources": [],
-  "outputs": {}
+  "resources": [
+    {
+      "type": "Microsoft.Solutions/application",
+      "apiVersion": "2019-07-01",
+      "name": "[parameters('applicationName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "managedResourceGroupId": "[resourceGroup().id]",
+        "applicationDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Solutions/applicationDefinitions/', parameters('applicationDefinitionName'))]",
+        "parameters": {},
+        "packageFileUri": "https://raw.githubusercontent.com/Borg-GitHub/mlztest/main/mlz-avd-managed-app.zip"
+      }
+    }
+  ]
 }
