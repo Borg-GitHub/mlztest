@@ -1,86 +1,206 @@
-targetScope = 'subscription'
-
-@description('Resource naming identifier (1-6 lowercase alphanumeric characters).')
-param identifier string
-
-@description('Environment abbreviation (dev, test, prod).')
-@allowed([
-  'dev'
-  'test'
-  'prod'
-])
-param environmentAbbreviation string = 'dev'
-
-// ...add all other MLZ parameters here, matching mlz.bicep...
-
-@description('AVD Host Pool Name')
-param avdHostPoolName string
-
-@description('AVD Host Pool Friendly Name')
-param avdHostPoolFriendlyName string
-
-@description('AVD Host Pool Type')
-@allowed([
-  'Pooled'
-  'Personal'
-])
-param avdHostPoolType string = 'Pooled'
-
-@description('Maximum number of users per session host')
-param avdMaxSessionLimit int = 16
-
-@description('Session Host VM Size')
-@allowed([
-  'Standard_D4s_v3'
-  'Standard_NV12s_v3'
-  'Standard_F8s_v2'
-])
-param avdVmSize string = 'Standard_D4s_v3'
-
-@description('Number of session host VMs to deploy')
-param avdVmCount int = 2
-
-@description('Comma-separated list of user principal names to assign to the AVD host pool')
-param avdUserPrincipalNames array
-
-@description('Type of image to use for session hosts')
-@allowed([
-  'Gallery'
-  'Custom'
-])
-param avdImageType string = 'Gallery'
-
-@description('Gallery image to use for session hosts')
-param avdGalleryImage string = 'MicrosoftWindowsDesktop:windows-11:win11-22h2-avd:latest'
-
-// Deploy MLZ core
-module mlz 'mlz.bicep' = {
-  name: 'mlz-core'
-  scope: subscription()
-  params: {
-    identifier: identifier
-    environmentAbbreviation: environmentAbbreviation
-    // ...pass all other MLZ parameters here...
-  }
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "1.0.0",
+  "parameters": {
+    "azureGatewaySubnetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.129.192/26",
+      "metadata": {
+        "description": "The CIDR Subnet Address Prefix for the Azure Gateway Subnet. It must be in the Hub Virtual Network space. It must be /26."
+      }
+    },
+    "identifier": {
+      "type": "string",
+      "metadata": {
+        "description": "1-6 alphanumeric characters without whitespace, used to name resources and generate uniqueness for resources within your subscription."
+      }
+    },
+    "environmentAbbreviation": {
+      "type": "string",
+      "defaultValue": "dev",
+      "allowedValues": ["dev", "prod", "test"],
+      "metadata": {
+        "description": "[dev/prod/test] The abbreviation for the target environment."
+      }
+    },
+    "avdHostPoolName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Azure Virtual Desktop Host Pool."
+      }
+    },
+    "avdHostPoolFriendlyName": {
+      "type": "string",
+      "metadata": {
+        "description": "Friendly name for the AVD Host Pool."
+      }
+    },
+    "avdHostPoolType": {
+      "type": "string",
+      "defaultValue": "Pooled",
+      "allowedValues": ["Pooled", "Personal"],
+      "metadata": {
+        "description": "Type of AVD Host Pool."
+      }
+    },
+    "avdMaxSessionLimit": {
+      "type": "int",
+      "defaultValue": 16,
+      "metadata": {
+        "description": "Maximum number of users per session host."
+      }
+    },
+    "avdVmSize": {
+      "type": "string",
+      "defaultValue": "Standard_D4s_v3",
+      "allowedValues": [
+        "Standard_D4s_v3",
+        "Standard_NV12s_v3",
+        "Standard_F8s_v2"
+      ],
+      "metadata": {
+        "description": "Size of the session host VMs."
+      }
+    },
+    "avdVmCount": {
+      "type": "int",
+      "defaultValue": 2,
+      "metadata": {
+        "description": "Number of session host VMs to deploy."
+      }
+    },
+    "avdUserPrincipalNames": {
+      "type": "array",
+      "metadata": {
+        "description": "List of user principal names to assign to the AVD host pool."
+      }
+    },
+    "avdImageType": {
+      "type": "string",
+      "defaultValue": "Gallery",
+      "allowedValues": ["Gallery", "Custom"],
+      "metadata": {
+        "description": "Type of image to use for session hosts."
+      }
+    },
+    "avdGalleryImage": {
+      "type": "string",
+      "defaultValue": "MicrosoftWindowsDesktop:windows-11:win11-22h2-avd:latest",
+      "metadata": {
+        "description": "Gallery image to use for session hosts."
+      }
+    }
+  },
+  "outputs": {},
+  "steps": [
+    {
+      "name": "coreSettings",
+      "label": "Core MLZ Settings",
+      "elements": [
+        {
+          "name": "identifier",
+          "type": "Microsoft.Common.TextBox",
+          "label": "Identifier",
+          "toolTip": "1-6 alphanumeric characters without whitespace, used to name resources and generate uniqueness for resources within your subscription."
+        },
+        {
+          "name": "environmentAbbreviation",
+          "type": "Microsoft.Common.DropDown",
+          "label": "Environment",
+          "toolTip": "Target environment abbreviation",
+          "defaultValue": "dev",
+          "constraints": {
+            "allowedValues": [
+              { "label": "Development", "value": "dev" },
+              { "label": "Production", "value": "prod" },
+              { "label": "Test", "value": "test" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "avdSettings",
+      "label": "Azure Virtual Desktop Settings",
+      "elements": [
+        {
+          "name": "avdHostPoolName",
+          "type": "Microsoft.Common.TextBox",
+          "label": "AVD Host Pool Name",
+          "toolTip": "Enter the name for the AVD host pool."
+        },
+        {
+          "name": "avdHostPoolFriendlyName",
+          "type": "Microsoft.Common.TextBox",
+          "label": "AVD Host Pool Friendly Name",
+          "toolTip": "Enter a friendly name for the AVD host pool."
+        },
+        {
+          "name": "avdHostPoolType",
+          "type": "Microsoft.Common.DropDown",
+          "label": "Host Pool Type",
+          "toolTip": "Select the type of AVD host pool.",
+          "defaultValue": "Pooled",
+          "constraints": {
+            "allowedValues": [
+              { "label": "Pooled", "value": "Pooled" },
+              { "label": "Personal", "value": "Personal" }
+            ]
+          }
+        },
+        {
+          "name": "avdMaxSessionLimit",
+          "type": "Microsoft.Common.TextBox",
+          "label": "Max Session Limit",
+          "toolTip": "Maximum number of users per session host."
+        },
+        {
+          "name": "avdVmSize",
+          "type": "Microsoft.Common.DropDown",
+          "label": "Session Host VM Size",
+          "toolTip": "Choose the VM size for session hosts.",
+          "defaultValue": "Standard_D4s_v3",
+          "constraints": {
+            "allowedValues": [
+              { "label": "D4s v3", "value": "Standard_D4s_v3" },
+              { "label": "NV12s v3 (GPU)", "value": "Standard_NV12s_v3" },
+              { "label": "F8s v2", "value": "Standard_F8s_v2" }
+            ]
+          }
+        },
+        {
+          "name": "avdVmCount",
+          "type": "Microsoft.Common.TextBox",
+          "label": "Session Host VM Count",
+          "toolTip": "Number of session host VMs to deploy."
+        },
+        {
+          "name": "avdUserPrincipalNames",
+          "type": "Microsoft.Common.TextBox",
+          "label": "User Principal Names",
+          "toolTip": "Comma-separated list of user principal names to assign to the AVD host pool."
+        },
+        {
+          "name": "avdImageType",
+          "type": "Microsoft.Common.DropDown",
+          "label": "Session Host Image Type",
+          "toolTip": "Select the type of image to use for session hosts.",
+          "defaultValue": "Gallery",
+          "constraints": {
+            "allowedValues": [
+              { "label": "Gallery", "value": "Gallery" },
+              { "label": "Custom", "value": "Custom" }
+            ]
+          }
+        },
+        {
+          "name": "avdGalleryImage",
+          "type": "Microsoft.Common.TextBox",
+          "label": "Gallery Image",
+          "toolTip": "Gallery image to use for session hosts."
+        }
+      ]
+    }
+  ]
 }
-
-// Deploy AVD add-on
-module avd 'add-ons/azure-virtual-desktop/avd-solution.bicep' = {
-  name: 'avd-addon'
-  scope: subscription()
-  params: {
-    avdHostPoolName: avdHostPoolName
-    avdHostPoolFriendlyName: avdHostPoolFriendlyName
-    avdHostPoolType: avdHostPoolType
-    avdMaxSessionLimit: avdMaxSessionLimit
-    avdVmSize: avdVmSize
-    avdVmCount: avdVmCount
-    avdUserPrincipalNames: avdUserPrincipalNames
-    avdImageType: avdImageType
-    avdGalleryImage: avdGalleryImage
-    // ...pass any required MLZ outputs or shared parameters if needed...
-  }
-}
-
-output mlzOutputs object = mlz.outputs
-output avdOutputs object = avd.outputs
