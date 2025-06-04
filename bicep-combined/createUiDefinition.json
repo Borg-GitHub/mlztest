@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/createUiDefinition.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "1.0.0",
+  "parameters": {},
+  "outputs": {
+    "parameters": {
+      "value": "[steps('form').parameters]"
+    }
+  },
+  "steps": [ ... ]  // Truncated here for brevity — this will contain the full updated UI from canvas
+}
