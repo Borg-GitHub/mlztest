@@ -92,7 +92,6 @@
       }
     }
   },
-  "outputs": {},
   "steps": [
     {
       "name": "coreSettings",
