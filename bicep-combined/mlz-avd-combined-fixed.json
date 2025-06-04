@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "identifier": {
+      "type": "string",
+      "metadata": {
+        "description": "Short identifier for the environment (e.g., \"corp\", \"dev\"). Used in naming conventions."
+      }
+    },
+    "environmentAbbreviation": {
+      "type": "string",
+      "metadata": {
+        "description": "Target environment name."
+      },
+      "defaultValue": "dev"
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Region to deploy the resources in."
+      },
+      "defaultValue": "eastus"
+    },
+    "avdHostPoolName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the AVD Host Pool"
+      }
+    },
+    "avdHostPoolFriendlyName": {
+      "type": "string",
+      "metadata": {
+        "description": "Friendly display name for the AVD Host Pool"
+      }
+    },
+    "avdHostPoolType": {
+      "type": "string",
+      "metadata": {
+        "description": "Type of the AVD Host Pool."
+      },
+      "defaultValue": "Pooled"
+    },
+    "avdVmSize": {
+      "type": "string",
+      "metadata": {
+        "description": "Size of each session host VM."
+      },
+      "defaultValue": "Standard_D4s_v3",
+      "allowedValues": [
+        "Standard_D4s_v3",
+        "Standard_F8s_v2",
+        "Standard_NV12s_v3"
+      ]
+    },
+    "avdVmCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of session host VMs to deploy."
+      },
+      "defaultValue": 2
+    },
+    "avdUserPrincipalNames": {
+      "type": "string",
+      "metadata": {
+        "description": "Comma-separated list of user principal names (UPNs) to assign to the host pool."
+      }
+    },
+    "avdImageType": {
+      "type": "string",
+      "metadata": {
+        "description": "Image source type for the session hosts."
+      },
+      "defaultValue": "Gallery"
+    },
+    "avdGalleryImage": {
+      "type": "string",
+      "metadata": {
+        "description": "Marketplace URN for the image (if using Gallery image)."
+      },
+      "defaultValue": "MicrosoftWindowsDesktop:windows-11:win11-22h2-avd:latest"
+    }
+  },
+  "resources": [],
+  "outputs": {}
+}
