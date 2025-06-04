@@ -1,7 +1,6 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "handler": "Microsoft.Azure.CreateUIDef",
-  "version": "1.0.0",
+  "contentVersion": "1.0.0.0",
   "parameters": {
     "azureGatewaySubnetAddressPrefix": {
       "type": "string",
@@ -92,115 +91,7 @@
       }
     }
   },
-  "outputs": {},
-  "steps": [
-    {
-      "name": "coreSettings",
-      "label": "Core MLZ Settings",
-      "elements": [
-        {
-          "name": "identifier",
-          "type": "Microsoft.Common.TextBox",
-          "label": "Identifier",
-          "toolTip": "1-6 alphanumeric characters without whitespace, used to name resources and generate uniqueness for resources within your subscription."
-        },
-        {
-          "name": "environmentAbbreviation",
-          "type": "Microsoft.Common.DropDown",
-          "label": "Environment",
-          "toolTip": "Target environment abbreviation",
-          "defaultValue": "dev",
-          "constraints": {
-            "allowedValues": [
-              { "label": "Development", "value": "dev" },
-              { "label": "Production", "value": "prod" },
-              { "label": "Test", "value": "test" }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "avdSettings",
-      "label": "Azure Virtual Desktop Settings",
-      "elements": [
-        {
-          "name": "avdHostPoolName",
-          "type": "Microsoft.Common.TextBox",
-          "label": "AVD Host Pool Name",
-          "toolTip": "Enter the name for the AVD host pool."
-        },
-        {
-          "name": "avdHostPoolFriendlyName",
-          "type": "Microsoft.Common.TextBox",
-          "label": "AVD Host Pool Friendly Name",
-          "toolTip": "Enter a friendly name for the AVD host pool."
-        },
-        {
-          "name": "avdHostPoolType",
-          "type": "Microsoft.Common.DropDown",
-          "label": "Host Pool Type",
-          "toolTip": "Select the type of AVD host pool.",
-          "defaultValue": "Pooled",
-          "constraints": {
-            "allowedValues": [
-              { "label": "Pooled", "value": "Pooled" },
-              { "label": "Personal", "value": "Personal" }
-            ]
-          }
-        },
-        {
-          "name": "avdMaxSessionLimit",
-          "type": "Microsoft.Common.TextBox",
-          "label": "Max Session Limit",
-          "toolTip": "Maximum number of users per session host."
-        },
-        {
-          "name": "avdVmSize",
-          "type": "Microsoft.Common.DropDown",
-          "label": "Session Host VM Size",
-          "toolTip": "Choose the VM size for session hosts.",
-          "defaultValue": "Standard_D4s_v3",
-          "constraints": {
-            "allowedValues": [
-              { "label": "D4s v3", "value": "Standard_D4s_v3" },
-              { "label": "NV12s v3 (GPU)", "value": "Standard_NV12s_v3" },
-              { "label": "F8s v2", "value": "Standard_F8s_v2" }
-            ]
-          }
-        },
-        {
-          "name": "avdVmCount",
-          "type": "Microsoft.Common.TextBox",
-          "label": "Session Host VM Count",
-          "toolTip": "Number of session host VMs to deploy."
-        },
-        {
-          "name": "avdUserPrincipalNames",
-          "type": "Microsoft.Common.TextBox",
-          "label": "User Principal Names",
-          "toolTip": "Comma-separated list of user principal names to assign to the AVD host pool."
-        },
-        {
-          "name": "avdImageType",
-          "type": "Microsoft.Common.DropDown",
-          "label": "Session Host Image Type",
-          "toolTip": "Select the type of image to use for session hosts.",
-          "defaultValue": "Gallery",
-          "constraints": {
-            "allowedValues": [
-              { "label": "Gallery", "value": "Gallery" },
-              { "label": "Custom", "value": "Custom" }
-            ]
-          }
-        },
-        {
-          "name": "avdGalleryImage",
-          "type": "Microsoft.Common.TextBox",
-          "label": "Gallery Image",
-          "toolTip": "Gallery image to use for session hosts."
-        }
-      ]
-    }
-  ]
+  "variables": {},
+  "resources": [],
+  "outputs": {}
 }
