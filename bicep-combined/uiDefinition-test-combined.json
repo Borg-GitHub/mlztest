@@ -2,102 +2,8 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/createUiDefinition.json#",
   "handler": "Microsoft.Azure.CreateUIDef",
   "version": "1.0.0",
-  "parameters": {
-    "identifier": {
-      "type": "string",
-      "metadata": {
-        "description": "1-6 alphanumeric characters without whitespace, used to name resources and generate uniqueness for resources within your subscription."
-      }
-    },
-    "environmentAbbreviation": {
-      "type": "string",
-      "defaultValue": "dev",
-      "allowedValues": ["dev", "prod", "test"],
-      "metadata": {
-        "description": "[dev/prod/test] The abbreviation for the target environment."
-      }
-    },
-    "avdHostPoolName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Azure Virtual Desktop Host Pool."
-      }
-    },
-    "avdHostPoolFriendlyName": {
-      "type": "string",
-      "metadata": {
-        "description": "Friendly name for the AVD Host Pool."
-      }
-    },
-    "avdHostPoolType": {
-      "type": "string",
-      "defaultValue": "Pooled",
-      "allowedValues": ["Pooled", "Personal"],
-      "metadata": {
-        "description": "Type of AVD Host Pool."
-      }
-    },
-    "avdMaxSessionLimit": {
-      "type": "int",
-      "defaultValue": 16,
-      "metadata": {
-        "description": "Maximum number of users per session host."
-      }
-    },
-    "avdVmSize": {
-      "type": "string",
-      "defaultValue": "Standard_D4s_v3",
-      "allowedValues": ["Standard_D4s_v3", "Standard_NV12s_v3", "Standard_F8s_v2"],
-      "metadata": {
-        "description": "Size of the session host VMs."
-      }
-    },
-    "avdVmCount": {
-      "type": "int",
-      "defaultValue": 2,
-      "metadata": {
-        "description": "Number of session host VMs to deploy."
-      }
-    },
-    "avdUserPrincipalNames": {
-      "type": "array",
-      "metadata": {
-        "description": "List of user principal names to assign to the AVD host pool."
-      }
-    },
-    "avdImageType": {
-      "type": "string",
-      "defaultValue": "Gallery",
-      "allowedValues": ["Gallery", "Custom"],
-      "metadata": {
-        "description": "Type of image to use for session hosts."
-      }
-    },
-    "avdGalleryImage": {
-      "type": "string",
-      "defaultValue": "MicrosoftWindowsDesktop:windows-11:win11-22h2-avd:latest",
-      "metadata": {
-        "description": "Gallery image to use for session hosts."
-      }
-    }
-  },
-  "outputs": {
-    "parameters": {
-      "value": {
-        "identifier": "[steps('coreSettings').identifier]",
-        "environmentAbbreviation": "[steps('coreSettings').environmentAbbreviation]",
-        "avdHostPoolName": "[steps('avdSettings').avdHostPoolName]",
-        "avdHostPoolFriendlyName": "[steps('avdSettings').avdHostPoolFriendlyName]",
-        "avdHostPoolType": "[steps('avdSettings').avdHostPoolType]",
-        "avdMaxSessionLimit": "[steps('avdSettings').avdMaxSessionLimit]",
-        "avdVmSize": "[steps('avdSettings').avdVmSize]",
-        "avdVmCount": "[steps('avdSettings').avdVmCount]",
-        "avdUserPrincipalNames": "[steps('avdSettings').avdUserPrincipalNames]",
-        "avdImageType": "[steps('avdSettings').avdImageType]",
-        "avdGalleryImage": "[steps('avdSettings').avdGalleryImage]"
-      }
-    }
-  },
+  "parameters": { ... },
+  "outputs": { ... },
   "steps": [
     {
       "name": "coreSettings",
@@ -107,7 +13,8 @@
           "name": "identifier",
           "type": "Microsoft.Common.TextBox",
           "label": "Identifier",
-          "toolTip": "1-6 alphanumeric characters without whitespace, used to name resources and generate uniqueness for resources within your subscription."
+          "toolTip": "1-6 alphanumeric characters without whitespace, used to name resources and generate uniqueness for resources within your subscription.",
+          "constraints": { "required": true }
         },
         {
           "name": "environmentAbbreviation",
@@ -116,6 +23,7 @@
           "toolTip": "Target environment abbreviation",
           "defaultValue": "dev",
           "constraints": {
+            "required": true,
             "allowedValues": [
               { "label": "Development", "value": "dev" },
               { "label": "Production", "value": "prod" },
@@ -133,13 +41,15 @@
           "name": "avdHostPoolName",
           "type": "Microsoft.Common.TextBox",
           "label": "AVD Host Pool Name",
-          "toolTip": "Enter the name for the AVD host pool."
+          "toolTip": "Enter the name for the AVD host pool.",
+          "constraints": { "required": true }
         },
         {
           "name": "avdHostPoolFriendlyName",
           "type": "Microsoft.Common.TextBox",
           "label": "AVD Host Pool Friendly Name",
-          "toolTip": "Enter a friendly name for the AVD host pool."
+          "toolTip": "Enter a friendly name for the AVD host pool.",
+          "constraints": { "required": true }
         },
         {
           "name": "avdHostPoolType",
@@ -148,6 +58,7 @@
           "toolTip": "Select the type of AVD host pool.",
           "defaultValue": "Pooled",
           "constraints": {
+            "required": true,
             "allowedValues": [
               { "label": "Pooled", "value": "Pooled" },
               { "label": "Personal", "value": "Personal" }
@@ -158,7 +69,8 @@
           "name": "avdMaxSessionLimit",
           "type": "Microsoft.Common.TextBox",
           "label": "Max Session Limit",
-          "toolTip": "Maximum number of users per session host."
+          "toolTip": "Maximum number of users per session host.",
+          "constraints": { "required": true }
         },
         {
           "name": "avdVmSize",
@@ -167,6 +79,7 @@
           "toolTip": "Select a VM size for session hosts.",
           "defaultValue": "Standard_D4s_v3",
           "constraints": {
+            "required": true,
             "allowedValues": [
               { "label": "D4s_v3", "value": "Standard_D4s_v3" },
               { "label": "NV12s_v3", "value": "Standard_NV12s_v3" },
@@ -178,13 +91,15 @@
           "name": "avdVmCount",
           "type": "Microsoft.Common.TextBox",
           "label": "Session Host Count",
-          "toolTip": "Number of VMs to deploy."
+          "toolTip": "Number of VMs to deploy.",
+          "constraints": { "required": true }
         },
         {
           "name": "avdUserPrincipalNames",
           "type": "Microsoft.Common.TextBox",
           "label": "User Principal Names",
-          "toolTip": "Comma-separated list of UPNs to assign to the host pool."
+          "toolTip": "Comma-separated list of UPNs to assign to the host pool.",
+          "constraints": { "required": true }
         },
         {
           "name": "avdImageType",
@@ -193,6 +108,7 @@
           "toolTip": "Choose between gallery or custom image.",
           "defaultValue": "Gallery",
           "constraints": {
+            "required": true,
             "allowedValues": [
               { "label": "Gallery", "value": "Gallery" },
               { "label": "Custom", "value": "Custom" }
@@ -203,7 +119,8 @@
           "name": "avdGalleryImage",
           "type": "Microsoft.Common.TextBox",
           "label": "Gallery Image URN",
-          "toolTip": "Marketplace URN of the image."
+          "toolTip": "Marketplace URN of the image.",
+          "constraints": { "required": true }
         }
       ]
     }
