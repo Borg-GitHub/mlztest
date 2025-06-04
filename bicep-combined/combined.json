@@ -1,0 +1,86 @@
+targetScope = 'subscription'
+
+@description('Resource naming identifier (1-6 lowercase alphanumeric characters).')
+param identifier string
+
+@description('Environment abbreviation (dev, test, prod).')
+@allowed([
+  'dev'
+  'test'
+  'prod'
+])
+param environmentAbbreviation string = 'dev'
+
+// ...add all other MLZ parameters here, matching mlz.bicep...
+
+@description('AVD Host Pool Name')
+param avdHostPoolName string
+
+@description('AVD Host Pool Friendly Name')
+param avdHostPoolFriendlyName string
+
+@description('AVD Host Pool Type')
+@allowed([
+  'Pooled'
+  'Personal'
+])
+param avdHostPoolType string = 'Pooled'
+
+@description('Maximum number of users per session host')
+param avdMaxSessionLimit int = 16
+
+@description('Session Host VM Size')
+@allowed([
+  'Standard_D4s_v3'
+  'Standard_NV12s_v3'
+  'Standard_F8s_v2'
+])
+param avdVmSize string = 'Standard_D4s_v3'
+
+@description('Number of session host VMs to deploy')
+param avdVmCount int = 2
+
+@description('Comma-separated list of user principal names to assign to the AVD host pool')
+param avdUserPrincipalNames array
+
+@description('Type of image to use for session hosts')
+@allowed([
+  'Gallery'
+  'Custom'
+])
+param avdImageType string = 'Gallery'
+
+@description('Gallery image to use for session hosts')
+param avdGalleryImage string = 'MicrosoftWindowsDesktop:windows-11:win11-22h2-avd:latest'
+
+// Deploy MLZ core
+module mlz 'mlz.bicep' = {
+  name: 'mlz-core'
+  scope: subscription()
+  params: {
+    identifier: identifier
+    environmentAbbreviation: environmentAbbreviation
+    // ...pass all other MLZ parameters here...
+  }
+}
+
+// Deploy AVD add-on
+module avd 'add-ons/azure-virtual-desktop/avd-solution.bicep' = {
+  name: 'avd-addon'
+  scope: subscription()
+  params: {
+    avdHostPoolName: avdHostPoolName
+    avdHostPoolFriendlyName: avdHostPoolFriendlyName
+    avdHostPoolType: avdHostPoolType
+    avdMaxSessionLimit: avdMaxSessionLimit
+    avdVmSize: avdVmSize
+    avdVmCount: avdVmCount
+    avdUserPrincipalNames: avdUserPrincipalNames
+    avdImageType: avdImageType
+    avdGalleryImage: avdGalleryImage
+    // ...pass any required MLZ outputs or shared parameters if needed...
+  }
+}
+
+output mlzOutputs object = mlz.outputs
+output avdOutputs object = avd.outputs
