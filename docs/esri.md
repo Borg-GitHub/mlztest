@@ -98,7 +98,7 @@ The single-tier ArcGIS Enterprise deployment involves installing all components 
 ArcGIS Enterprise Cloud Builder for Microsoft Azure is an application you install on your local Microsoft Windows machine to deploy ArcGIS Enterprise and stand-alone ArcGIS Server sites on Microsoft Azure. It helps you to extend your Azure implementation to include ArcGIS.
 
 ![ArcGIS Cloud Builder diagram](./images/Esri-cloudbuilder-singlesite.png)
-![ArcGIS Cloud Builder DSC diagram](./images/Esri-cloudbuilder-dsc.png)
+![ArcGIS Cloud Builder DSC diagram](./images/esri-cloudbuilder-dsc.png)
 
 ## Scenario 3: Multi-Tier Deployment (ArcGIS Enterprise + ArcGIS Pro on AVD)
 
