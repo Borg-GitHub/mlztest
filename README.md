@@ -7,9 +7,9 @@ This repo hosts an ARM template + parameters to deploy into Azure Commercial Clo
 
 ## How to deploy
 
-Click the button below; you’ll be taken to the Azure Portal’s custom deployment screen with the template & parameters pre-loaded:
+Click the button below; you’ll be taken to the Azure Portal’s custom-deployment screen with the template & parameters pre-loaded:
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FBorg-GitHub%2Fmlztest%2Fmain%2Fazuredeploy.json?parametersUri=https%3A%2F%2Fraw.githubusercontent.com%2FBorg-GitHub%2Fmlztest%2Fmain%2Fazuredeploy.parameters.json)
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FBorg-GitHub%2Fmlztest%2Fmain%2Fazuredeploy.json/parameters/https%3A%2F%2Fraw.githubusercontent.com%2FBorg-GitHub%2Fmlztest%2Fmain%2Fazuredeploy.parameters.json)
 
 ---
 
@@ -24,7 +24,7 @@ Click the button below; you’ll be taken to the Azure Portal’s custom deploym
 ---
 
 When you click “Deploy to Azure”:  
-1. Choose your subscription, resource group (or create a new one).  
+1. Choose your subscription and resource group (or create a new one).  
 2. Review/edit any parameter values (e.g. `location`).  
 3. Click **Review + create** → **Create**.  
 4. Azure will provision everything as specified in the template.
