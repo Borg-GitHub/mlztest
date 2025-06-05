@@ -9,7 +9,7 @@ This repo hosts an ARM template + parameters to deploy into Azure Commercial Clo
 
 Click the button below; you’ll be taken to the Azure Portal’s custom deployment screen with the template & parameters pre-loaded:
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net?repository=https://github.com/<YOUR-GITHUB-ORG-OR-USER>/<YOUR-REPO-NAME>)
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FBorg-GitHub%2Fmlztest%2Fmain%2Fazuredeploy.json?parametersUri=https%3A%2F%2Fraw.githubusercontent.com%2FBorg-GitHub%2Fmlztest%2Fmain%2Fazuredeploy.parameters.json)
 
 ---
 
