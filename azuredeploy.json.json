@@ -1,0 +1,281 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "hciArtifactsLocation": {
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/HCIScripts_1.0.03064.767/HciCustomScript.ps1"
+        },
+        "customLocationId": {
+            "value": ""
+        },
+        "virtualProcessorCount": {
+            "value": null
+        },
+        "memoryMB": {
+            "value": 0
+        },
+        "maximumMemoryMB": {
+            "value": 0
+        },
+        "minimumMemoryMB": {
+            "value": 0
+        },
+        "dynamicMemoryConfig": {
+            "value": false
+        },
+        "vmInfrastructureType": {
+            "value": "Cloud"
+        },
+        "hciTPM": {
+            "value": false
+        },
+        "hciSecureBoot": {
+            "value": false
+        },
+        "hciSecurityType": {
+            "value": "Standard"
+        },
+        "hciClusterId": {
+            "value": ""
+        },
+        "attestationServiceEndpoint": {
+            "value": null
+        },
+        "relyingPartyServiceEndpoint": {
+            "value": null
+        },
+        "hciClusterAadTenantId": {
+            "value": ""
+        },
+        "hciTrustLaunchBootIntegrity": {
+            "value": false
+        },
+        "artifactsLocation": {
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_1.0.03064.767.zip"
+        },
+        "intune": {
+            "value": false
+        },
+        "hostpoolName": {
+            "value": "quickstart-test"
+        },
+        "hostpoolDescription": {
+            "value": "Created through the Azure Virtual Desktop extension"
+        },
+        "location": {
+            "value": "westus2"
+        },
+        "validationEnvironment": {
+            "value": false
+        },
+        "hostpoolType": {
+            "value": "Pooled"
+        },
+        "loadBalancerType": {
+            "value": "BreadthFirst"
+        },
+        "preferredAppGroupType": {
+            "value": "Desktop"
+        },
+        "publicNetworkAccess": {
+            "value": "Enabled"
+        },
+        "vmResourceGroup": {
+            "value": "quickstart-test"
+        },
+        "vmNamePrefix": {
+            "value": "quckstart"
+        },
+        "vmLocation": {
+            "value": "westus2"
+        },
+        "vmExtendedLocation": {
+            "value": null
+        },
+        "vmKind": {
+            "value": ""
+        },
+        "vmImageType": {
+            "value": "Gallery"
+        },
+        "vmSize": {
+            "value": "Standard_D2as_v5"
+        },
+        "vmNumberOfInstances": {
+            "value": 1
+        },
+        "vmDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "vmDiskSizeGB": {
+            "value": 128
+        },
+        "vmHibernate": {
+            "value": false
+        },
+        "bootDiagnostics": {
+            "value": {
+                "enabled": true
+            }
+        },
+        "securityType": {
+            "value": "TrustedLaunch"
+        },
+        "secureBoot": {
+            "value": true
+        },
+        "vTPM": {
+            "value": true
+        },
+        "customConfigurationScriptUrl": {
+            "value": ""
+        },
+        "virtualNetworkResourceGroupName": {
+            "value": "mlz-dev-usw2-sharedServices-rg-network"
+        },
+        "existingVnetName": {
+            "value": "mlz-dev-usw2-sharedServices-vnet"
+        },
+        "existingSubnetName": {
+            "value": "mlz-dev-usw2-sharedServices-snet"
+        },
+        "createNetworkSecurityGroup": {
+            "value": false
+        },
+        "aadJoin": {
+            "value": false
+        },
+        "domain": {
+            "value": ""
+        },
+        "ouPath": {
+            "value": ""
+        },
+        "hostpoolDiagnosticSettingsLogAnalyticsWorkspaceId": {
+            "value": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourceGroups/mlz-dev-usw2-operations-rg-network/providers/Microsoft.OperationalInsights/workspaces/mlz-dev-usw2-operations-log"
+        },
+        "addToWorkspace": {
+            "value": true
+        },
+        "virtualMachineTags": {
+            "value": {
+                "cm-resource-parent": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourceGroups/quickstart-test/providers/Microsoft.DesktopVirtualization/quickstart-test"
+            }
+        },
+        "apiVersion": {
+            "value": "2024-04-08-preview"
+        },
+        "deploymentId": {
+            "value": "88436e31-aba2-4910-a77d-26c90d742041"
+        },
+        "vmGalleryImageOffer": {
+            "value": "windows-11"
+        },
+        "vmGalleryImagePublisher": {
+            "value": "microsoftwindowsdesktop"
+        },
+        "vmGalleryImageSKU": {
+            "value": "win11-23h2-avd"
+        },
+        "vmGalleryImageHasPlan": {
+            "value": false
+        },
+        "maxSessionLimit": {
+            "value": 5
+        },
+        "workspaceResourceGroup": {
+            "value": "AVD"
+        },
+        "workSpaceName": {
+            "value": "avd-local"
+        },
+        "workspaceLocation": {
+            "value": "westus2"
+        },
+        "allApplicationGroupReferences": {
+            "value": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourcegroups/AVD/providers/Microsoft.DesktopVirtualization/applicationgroups/avd-test-DAG"
+        },
+        "isNewWorkspace": {
+            "value": false
+        },
+        "systemData": {
+            "value": {
+                "aadJoinPreview": false,
+                "sessionHostConfigurationVersion": "",
+                "firstPartyExtension": false
+            }
+        },
+        "nestedTemplatesLocation": {
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/armtemplates/Hostpool_1.0.03064.767/nestedTemplates/"
+        },
+        "tokenExpirationTime": {
+            "value": "2025-06-06T00:52:28.978Z"
+        },
+        "vmTemplate": {
+            "value": "{\"namePrefix\":\"quckstart\",\"hibernate\":false,\"osDiskType\":\"StandardSSD_LRS\",\"diskSizeGB\":128,\"securityType\":\"TrustedLaunch\",\"secureBoot\":true,\"vTPM\":true,\"vmInfrastructureType\":\"Cloud\",\"virtualProcessorCount\":null,\"memoryGB\":null,\"maximumMemoryGB\":null,\"minimumMemoryGB\":null,\"dynamicMemoryConfig\":false}"
+        },
+        "availabilityOption": {
+            "value": "AvailabilityZone"
+        },
+        "availabilitySetName": {
+            "value": ""
+        },
+        "createAvailabilitySet": {
+            "value": false
+        },
+        "availabilitySetUpdateDomainCount": {
+            "value": 5
+        },
+        "availabilitySetFaultDomainCount": {
+            "value": 2
+        },
+        "integrityMonitoring": {
+            "value": true
+        },
+        "availabilityZones": {
+            "value": [
+                1,
+                2,
+                3
+            ]
+        },
+        "administratorAccountUsername": {
+            "value": "Mlzadmin@avd.local"
+        },
+        "administratorAccountPassword": {
+            "value": null
+        },
+        "vmAdministratorAccountUsername": {
+            "value": "localadmin"
+        },
+        "vmAdministratorAccountPassword": {
+            "value": null
+        },
+        "managedDiskSecurityEncryptionType": {
+            "value": "VMGuestStateOnly"
+        },
+        "availabilitySetTags": {
+            "value": {
+                "cm-resource-parent": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourceGroups/quickstart-test/providers/Microsoft.DesktopVirtualization/quickstart-test"
+            }
+        },
+        "applicationGroupTags": {
+            "value": {
+                "cm-resource-parent": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourceGroups/quickstart-test/providers/Microsoft.DesktopVirtualization/quickstart-test"
+            }
+        },
+        "hostpoolTags": {
+            "value": {}
+        },
+        "networkInterfaceTags": {
+            "value": {
+                "cm-resource-parent": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourceGroups/quickstart-test/providers/Microsoft.DesktopVirtualization/quickstart-test"
+            }
+        },
+        "networkSecurityGroupTags": {
+            "value": {
+                "cm-resource-parent": "/subscriptions/c61dc209-b106-4640-aaa6-34d4b7822094/resourceGroups/quickstart-test/providers/Microsoft.DesktopVirtualization/quickstart-test"
+            }
+        }
+    }
+}
